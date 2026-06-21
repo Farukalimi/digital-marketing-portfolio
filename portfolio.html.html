@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Faruk Alimi — Digital Marketing &amp; Paid Social Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @theme {
+    --color-charcoal: #1C1A17;
+    --color-cream: #F5F1E8;
+    --color-emerald: #1F4D3A;
+    --color-gold: #B8915A;
+    --color-stone: #8A8478;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+</style>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #F5F1E8; }
+  ::selection { background: #B8915A; color: #F5F1E8; }
+
+  .grain {
+    position: fixed; inset: 0; pointer-events: none; opacity: 0.035; z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .eyebrow { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.18em; text-transform: uppercase; }
+
+  .underline-grow {
+    background-image: linear-gradient(#B8915A, #B8915A);
+    background-position: 0 100%; background-size: 0% 1px; background-repeat: no-repeat;
+    transition: background-size 0.4s cubic-bezier(0.65,0,0.35,1);
+  }
+  .underline-grow:hover { background-size: 100% 1px; }
+
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ''; position: absolute; left: 0; bottom: -4px; height: 1px; width: 0;
+    background: #B8915A; transition: width 0.35s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  .btn-prime { position: relative; overflow: hidden; }
+  .btn-prime span { position: relative; z-index: 1; }
+  .btn-prime::before {
+    content: ''; position: absolute; inset: 0; background: #B8915A;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.65,0,0.35,1);
+  }
+  .btn-prime:hover::before { transform: scaleX(1); }
+
+  .expertise-card { transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), border-color 0.45s ease, box-shadow 0.45s ease; }
+  .expertise-card:hover { transform: translateY(-4px); border-color: #B8915A; box-shadow: 0 24px 48px -16px rgba(28,26,23,0.14); }
+  .expertise-num { transition: color 0.35s ease; }
+  .expertise-card:hover .expertise-num { color: #B8915A; }
+
+  /* Project cards */
+  .proj-card { position: relative; overflow: hidden; display: block; }
+  .proj-card img { transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), filter 0.7s ease; display: block; width: 100%; height: 100%; object-fit: cover; }
+  .proj-card:hover img { transform: scale(1.06); filter: saturate(1.08); }
+  .proj-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(28,26,23,0.05) 0%, rgba(28,26,23,0.15) 45%, rgba(28,26,23,0.92) 100%);
+  }
+  .proj-tag { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+  .proj-tag:hover { background-color: #B8915A; color: #1C1A17; border-color: #B8915A; }
+  .proj-arrow { transition: transform 0.4s cubic-bezier(0.65,0,0.35,1); }
+  .proj-card:hover .proj-arrow { transform: translate(4px,-4px); }
+
+  .stat-num { font-variant-numeric: tabular-nums; }
+
+  .field-input { background: transparent; border-bottom: 1px solid rgba(245,241,232,0.25); transition: border-color 0.3s ease; }
+  .field-input:focus { outline: none; border-color: #B8915A; }
+  .field-input::placeholder { color: rgba(245,241,232,0.35); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .proj-card img, .expertise-card, .btn-prime::before, .nav-link::after { transition: none; }
+  }
+
+  :focus-visible { outline: 2px solid #B8915A; outline-offset: 3px; }
+</style>
+</head>
+<body class="font-body text-charcoal antialiased">
+<div class="grain"></div>
+
+<!-- NAV -->
+<header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/85 border-b border-stone/15">
+  <nav class="max-w-6xl mx-auto px-6 md:px-10 h-16 md:h-20 flex items-center justify-between">
+    <a href="#top" class="font-display text-lg md:text-xl tracking-tight">Faruk Alimi</a>
+    <div class="hidden md:flex items-center gap-9 eyebrow text-[11px] text-charcoal/70">
+      <a href="#expertise" class="nav-link">Expertise</a>
+      <a href="#work" class="nav-link">Work</a>
+      <a href="#impact" class="nav-link">Impact</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <a href="#contact" class="btn-prime hidden md:inline-block border border-charcoal px-5 py-2.5 text-xs eyebrow">
+      <span>Start a project</span>
+    </a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="top" class="relative pt-40 pb-28 md:pt-52 md:pb-36 px-6 md:px-10 overflow-hidden">
+  <div class="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full border border-emerald/15"></div>
+  <div class="absolute top-40 -right-10 w-[260px] h-[260px] rounded-full border border-gold/25"></div>
+
+  <div class="max-w-6xl mx-auto relative">
+    <p class="eyebrow text-[11px] text-emerald mb-6 reveal">Digital Marketing &amp; Paid Social — Lagos, Nigeria</p>
+    <h1 class="font-display font-light text-[12vw] leading-[0.95] md:text-[5.6rem] md:leading-[0.94] tracking-tight max-w-4xl reveal">
+      Data-driven paid social, <span class="italic font-medium">curated</span> like a premium brand.
+    </h1>
+    <p class="mt-8 md:mt-10 max-w-xl text-base md:text-lg text-charcoal/70 leading-relaxed reveal">
+      I build and run social, paid media, and content systems for brands that care about precision as much as polish — turning campaign data into creative that performs.
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center gap-4 reveal">
+      <a href="#work" class="btn-prime border border-charcoal px-6 py-3.5 text-xs eyebrow">
+        <span>View the work</span>
+      </a>
+      <a href="mailto:arabaraonline@gmail.com" class="underline-grow text-sm font-medium">
+        arabaraonline@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CORE EXPERTISE -->
+<section id="expertise" class="px-6 md:px-10 py-24 md:py-32 border-t border-charcoal/10">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-16 md:mb-20 reveal">
+      <p class="eyebrow text-[11px] text-emerald mb-4">What I do</p>
+      <h2 class="font-display text-4xl md:text-5xl font-light max-w-xl">Core expertise</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+      <div class="expertise-card border border-charcoal/15 p-8 md:p-10 reveal">
+        <p class="expertise-num font-display text-sm text-charcoal/30 mb-10">01</p>
+        <h3 class="font-display text-2xl mb-4">Social Media Management</h3>
+        <p class="text-[15px] text-charcoal/65 leading-relaxed">
+          Content calendars, scheduling, and community engagement that keep a brand's voice consistent across every platform, every day.
+        </p>
+      </div>
+
+      <div class="expertise-card border border-charcoal/15 p-8 md:p-10 reveal">
+        <p class="expertise-num font-display text-sm text-charcoal/30 mb-10">02</p>
+        <h3 class="font-display text-2xl mb-4">Paid Social &amp; Meta Ads</h3>
+        <p class="text-[15px] text-charcoal/65 leading-relaxed">
+          Campaign setup, audience testing, and budget optimization in Meta Ads Manager — built around clear performance reporting.
+        </p>
+      </div>
+
+      <div class="expertise-card border border-charcoal/15 p-8 md:p-10 reveal">
+        <p class="expertise-num font-display text-sm text-charcoal/30 mb-10">03</p>
+        <h3 class="font-display text-2xl mb-4">Content Asset Coordination</h3>
+        <p class="text-[15px] text-charcoal/65 leading-relaxed">
+          Designing and organizing promotional creative in Canva, then coordinating production schedules so launches ship on time.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO WORK GRID -->
+<section id="work" class="px-6 md:px-10 py-24 md:py-32 bg-charcoal text-cream">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-end justify-between mb-16 md:mb-20 reveal">
+      <div>
+        <p class="eyebrow text-[11px] text-gold mb-4">Selected work</p>
+        <h2 class="font-display text-4xl md:text-5xl font-light">Portfolio</h2>
+      </div>
+      <p class="eyebrow text-[11px] text-cream/40 hidden md:block">03 projects</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+
+      <!-- Card 1 -->
+      <a href="#contact" class="proj-card border border-cream/15 aspect-[3/4] reveal">
+        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1200&h=800&q=80" alt="Social media content grid planning on a desk" loading="lazy" />
+        <div class="proj-overlay"></div>
+        <div class="absolute inset-0 p-7 md:p-8 flex flex-col justify-end">
+          <p class="eyebrow text-[10px] text-gold mb-3">Social Strategy</p>
+          <h3 class="font-display text-2xl mb-2">Brand Content Systems</h3>
+          <p class="text-[14px] text-cream/75 leading-relaxed mb-5">
+            Rebuilt a content calendar and posting cadence to lift engagement and keep cross-platform messaging consistent.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-2">
+            <span class="proj-tag eyebrow text-[10px] border border-cream/30 px-3 py-1.5">Canva</span>
+            <span class="proj-tag eyebrow text-[10px] border border-cream/30 px-3 py-1.5">HubSpot</span>
+          </div>
+          <span class="proj-arrow inline-block mt-3 text-gold text-sm">View details ↗</span>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="#contact" class="proj-card border border-cream/15 aspect-[3/4] reveal">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&h=800&q=80" alt="Performance analytics and growth dashboard charts" loading="lazy" />
+        <div class="proj-overlay"></div>
+        <div class="absolute inset-0 p-7 md:p-8 flex flex-col justify-end">
+          <p class="eyebrow text-[10px] text-gold mb-3">Paid Social</p>
+          <h3 class="font-display text-2xl mb-2">Meta Ads Performance</h3>
+          <p class="text-[14px] text-cream/75 leading-relaxed mb-5">
+            Set up, monitored, and optimized paid campaigns, using A/B testing and reporting to steadily reduce cost per result.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-2">
+            <span class="proj-tag eyebrow text-[10px] border border-cream/30 px-3 py-1.5">Meta Ads</span>
+            <span class="proj-tag eyebrow text-[10px] border border-cream/30 px-3 py-1.5">Analytics</span>
+          </div>
+          <span class="proj-arrow inline-block mt-3 text-gold text-sm">View details ↗</span>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="#contact" class="proj-card border border-cream/15 aspect-[3/4] reveal">
+        <img src="https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=1200&h=800&q=80" alt="Creative team collaborating on asset planning in modern office" loading="lazy" />
+        <div class="proj-overlay"></div>
+        <div class="absolute inset-0 p-7 md:p-8 flex flex-col justify-end">
+          <p class="eyebrow text-[10px] text-gold mb-3">Content Design</p>
+          <h3 class="font-display text-2xl mb-2">Creative Asset Coordination</h3>
+          <p class="text-[14px] text-cream/75 leading-relaxed mb-5">
+            Designed and organized promotional visual assets in Canva, coordinating timelines so every campaign launched on schedule.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-2">
+            <span class="proj-tag eyebrow text-[10px] border border-cream/30 px-3 py-1.5">Canva</span>
+            <span class="proj-tag eyebrow text-[10px] border border-cream/30 px-3 py-1.5">Meta Ads</span>
+          </div>
+          <span class="proj-arrow inline-block mt-3 text-gold text-sm">View details ↗</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT STAT BAR -->
+<section id="impact" class="px-6 md:px-10 py-20 md:py-24 bg-emerald text-cream">
+  <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
+    <div class="reveal">
+      <p class="stat-num font-display text-4xl md:text-5xl font-light">2+</p>
+      <p class="eyebrow text-[10px] text-cream/55 mt-3">Years Experience</p>
+    </div>
+    <div class="reveal">
+      <p class="stat-num font-display text-4xl md:text-5xl font-light">100+</p>
+      <p class="eyebrow text-[10px] text-cream/55 mt-3">Visual Assets Designed</p>
+    </div>
+    <div class="reveal">
+      <p class="stat-num font-display text-4xl md:text-5xl font-light">4</p>
+      <p class="eyebrow text-[10px] text-cream/55 mt-3">Brands Served</p>
+    </div>
+    <div class="reveal">
+      <p class="stat-num font-display text-4xl md:text-5xl font-light">3</p>
+      <p class="eyebrow text-[10px] text-cream/55 mt-3">Certifications Earned</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT & FOOTER -->
+<footer id="contact" class="px-6 md:px-10 py-24 md:py-32 bg-charcoal text-cream">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 md:gap-20">
+
+    <div class="reveal">
+      <p class="eyebrow text-[11px] text-gold mb-5">Let's work together</p>
+      <h2 class="font-display text-4xl md:text-5xl font-light leading-[1.05] mb-8">
+        Bring precision to your next campaign.
+      </h2>
+      <div class="space-y-4 text-sm">
+        <a href="mailto:arabaraonline@gmail.com" class="underline-grow block w-fit">arabaraonline@gmail.com</a>
+        <a href="https://linkedin.com/in/farukalimi" target="_blank" class="underline-grow block w-fit">linkedin.com/in/farukalimi ↗</a>
+        <p class="text-cream/55">Lagos, Nigeria — available remote, part-time</p>
+      </div>
+    </div>
+
+    <form class="reveal" onsubmit="event.preventDefault();">
+      <div class="grid sm:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="name" class="eyebrow text-[10px] text-cream/50 block mb-2">Name</label>
+          <input id="name" type="text" placeholder="Your full name" class="field-input w-full py-2.5 text-sm" />
+        </div>
+        <div>
+          <label for="email" class="eyebrow text-[10px] text-cream/50 block mb-2">Email</label>
+          <input id="email" type="email" placeholder="you@company.com" class="field-input w-full py-2.5 text-sm" />
+        </div>
+      </div>
+      <div class="mb-8">
+        <label for="message" class="eyebrow text-[10px] text-cream/50 block mb-2">Message</label>
+        <textarea id="message" rows="4" placeholder="Tell me about the role or project" class="field-input w-full py-2.5 text-sm resize-none"></textarea>
+      </div>
+      <button type="submit" class="btn-prime border border-cream/40 px-6 py-3.5 text-xs eyebrow">
+        <span>Send message</span>
+      </button>
+    </form>
+
+  </div>
+
+  <div class="max-w-6xl mx-auto mt-20 md:mt-24 pt-8 border-t border-cream/15 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 reveal">
+    <p class="eyebrow text-[10px] text-cream/40">Faruk Alimi — © 2026</p>
+    <p class="eyebrow text-[10px] text-cream/40">Digital Marketing &amp; Paid Social Specialist</p>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
